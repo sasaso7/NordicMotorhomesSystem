@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+<div class="BasicTable">
+    <table style="width: 80%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Create date</th>
+            <th>Extra ID</th>
+            <th>Employee ID</th>
+            <th>Customer ID</th>
+            <th>Motorhome ID</th>
+            <th>RentalOffice ID</th>
+            <th>Droppoint</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reservation: ${reservations}">
+            <td th:text="${reservation.reservation_id}" />
+            <td th:text="${reservation.start_date}" />
+            <td th:text="${reservation.end_date}" />
+            <td th:text="${reservation.creation_date}" />
+            <td th:text="${reservation.extra_id}" />
+            <td th:text="${reservation.employee_id}" />
+            <td th:text="${reservation.customer_id}" />
+            <td th:text="${reservation.motorHome_id}" />
+            <td th:text="${reservation.rental_office_id}" />
+            <td th:text="${reservation.droppoint}" />
+            <td>
+                <a th:href="@{'endReservation/'+${reservation.reservation_id}}">
+                    <button class="btn-endReservation", id="btn-endReservation" style="width: 100%">End reservation</button>
+
+                </a>
+                <br>
+                <a th:href="@{'cancelReservation/'+${reservation.reservation_id}}">
+                    <button class="btn-cancelReservation", id="btn-cancelReservation" style="width: 100%">Cancel reservation</button>
+
+                </a>
+                <br>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br>
+    <div class="BasicTable">
+    <table style="width: 69.4%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Mail</th>
+            <th>Create Date</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer: ${customers}">
+            <td th:text="${customer.customer_id}" />
+            <td th:text="${customer.first_name}" />
+            <td th:text="${customer.last_name}" />
+            <td th:text="${customer.email}" />
+            <td th:text="${customer.create_date}" />
+            <td th:text="${customer.address_id}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

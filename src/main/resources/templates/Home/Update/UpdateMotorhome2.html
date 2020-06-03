@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+
+<body>
+<div class="BasicTable">
+<table style="width: 12%">
+    <tr>
+        <th><br>Edit motorhome<br><br></th>
+    </tr>
+    <tr>
+        <td>
+
+    <form action="/UpdateMotorhome2" th:object="${Motorhome}" method="post">
+        <br>
+        <label>ID</label>
+        <br>
+        <input readonly name="motorHome_id"th:value="${motorHomes.motorHome_id}">
+        <br><br>
+        <label>Brand</label>
+        <br>
+        <input type="text" name="brand" th:value="${motorHomes.brand}">
+        <br><br>
+        <label>Model</label>
+        <br>
+        <input type="text" name="model" th:value="${motorHomes.model}">
+        <br><br>
+        <label>Odometer</label>
+        <br>
+        <input type="text" name="odometer" th:value="${motorHomes.odometer}">
+        <br><br>
+        <label> Seats </label>
+        <br>
+        <input type="text" name="seats" th:value="${motorHomes.seats}"/>
+        <br><br>
+        <label>Beds</label>
+        <br>
+        <input type="text" name="address_id" th:value="${motorHomes.beds}">
+        <br><br>
+        <label>Fuel</label>
+        <br>
+        <input type="text" name="fuel" th:value="${motorHomes.fuel}">
+        <br><br>
+        <label>Price per day</label>
+        <br>
+        <input type="text" name="price_per_day" th:value="${motorHomes.price_per_day}">
+        <br><br>
+        <label>Size ID</label>
+        <br>
+        <input readonly type="text" name="size_id" th:value="${motorHomes.size_id}">
+        <br><br>
+
+        <div id="size" th:object="${Size}">
+            <label>Length</label>
+            <br>
+            <input type="text" name="length" th:value="${sizes.length}">
+            <br><br>
+            <label>Height</label>
+            <br>
+            <input type="number" name="height" th:value="${sizes.height}">
+            <br><br>
+            <label>Weight</label>
+            <br>
+            <input type="number" name="weight" th:value="${sizes.weight}">
+            <br><br>
+        </div>
+
+        <input type="submit" value="Save changes">
+        <br><br>
+    </form>
+
+        </td>
+    </tr>
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+    <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</a>
+<body>
+<button class="tablink" onclick="openPage('Customers', this)" id="defaultOpen">Customers</button>
+<button class="tablink" onclick="openPage('Employees', this)">Employees</button>
+<button class="tablink" onclick="openPage('Motorhomes', this)">MotorHomes</button>
+<button class="tablink" onclick="openPage('RentalOffices', this)">RentalOffices</button>
+
+<div id="Customers" class="tabcontent">
+    <table>
+        <thead>
+        <tr>
+            <th><br>Customers<br><br></th>
+        </tr>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Creation date</th>
+            <th>Address ID</th>
+        </thead>
+        <tbody>
+        <tr th:each="customer: ${customers}">
+            <td th:text="${customer.customer_id}" />
+            <td th:text="${customer.first_name}" />
+            <td th:text="${customer.last_name}" />
+            <td th:text="${customer.email}" />
+            <td th:text="${customer.create_date}" />
+            <td th:text="${customer.address_id}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="Employees" class="tabcontent">
+    <table>
+        <thead>
+        <tr>
+            <th><br>Employees<br><br></th>
+        </tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Employee status</th>
+            <th>Proffesion</th>
+            <th>Address ID</th>
+            <th>Rental office ID</th>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.employee_id}" />
+            <td th:text="${employee.first_name}" />
+            <td th:text="${employee.last_name}" />
+            <td th:text="${employee.email}" />
+            <td th:text="${employee.employee_status}" />
+            <td th:text="${employee.profession}" />
+            <td th:text="${employee.address_id}" />
+            <td th:text="${employee.rental_office_id}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+<div id="Motorhomes" class="tabcontent">
+    <table>
+        <thead>
+        <tr>
+            <th><br>MotorHomes<br><br></th>
+        </tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Odometer</th>
+            <th>Seats</th>
+            <th>Beds</th>
+            <th>Fuel</th>
+            <th>Price per day</th>
+            <th>Size ID</th>
+        </thead>
+        <tbody>
+        <tr th:each="motorhome: ${motorHomes}">
+            <td th:text="${motorhome.motorHome_id}" />
+            <td th:text="${motorhome.brand}" />
+            <td th:text="${motorhome.model}" />
+            <td th:text="${motorhome.odometer}" />
+            <td th:text="${motorhome.seats}" />
+            <td th:text="${motorhome.beds}" />
+            <td th:text="${motorhome.fuel}" />
+            <td th:text="${motorhome.price_per_day}" />
+            <td th:text="${motorhome.size_id}" />
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="RentalOffices" class="tabcontent">
+    <th><br>Rental Offices<br><br></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="display: flex; flex-direction: row">
+                <table style="width: 45%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Address ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="RentalOffices : ${rentalOffices}">
+                        <td th:text="${RentalOffices.rental_office_id}" />
+                        <td th:text="${RentalOffices.address_id}" />
+                    </tr>
+                    </tbody>
+                </table>
+                <table style="width: 45%">
+                    <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Zip</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Address : ${address}">
+                        <td th:text="${Address.address_1}" />
+                        <td th:text="${Address.phone}" />
+                        <td th:text="${Address.zip_code}" />
+                    </tr>
+                    </tbody>
+                </table>
+                <br><br>
+            </div>
+</div>
+
+
+<script>
+    function openPage(pageName,elmnt,color) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+        }
+        document.getElementById(pageName).style.display = "block";
+        elmnt.style.backgroundColor = color;
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>

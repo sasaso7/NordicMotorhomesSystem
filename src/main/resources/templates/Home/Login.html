@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2020. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+<div class="BasicTable">
+    <table>
+        <tr>
+            <th><br> Welcome to NordicMotorhomes<br>please choose your account<br><br></th>
+        </tr>
+        <tr>
+            <td>
+<table style="width:97%;">
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Profession</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employees}">
+        <td th:text="${employee.first_name}" />
+        <td th:text="${employee.last_name}" />
+        <td th:text="${employee.profession}"/>
+        <td>
+
+
+                <button th:onclick="'javascript:Password(' + ${employee.employee_id} + ')'">SELECT</button>
+        </td>
+                <input type="hidden" th:id="'password_' + ${employee.employee_id}" th:value="${employee.password_emp}">
+
+
+
+    </tr>
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+    </table>
+    <script>
+        function Password(id){
+
+            var pass = document.getElementById("password_" + id).value;
+            console.log("password" + pass);
+            var check = (prompt("Type your password(your employee ID)"));
+            console.log(pass);
+            if(check === pass){
+                window.location = "/Login/" + id;
+            } else {
+                window.location = "/Login";
+                alert("Wrong Password");
+                document.getElementsByClassName("link").location.href = "/Login";
+
+
+            }
+        }
+    </script>
+
+</div>
+</body>
+</html>

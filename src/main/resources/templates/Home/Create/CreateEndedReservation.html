@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="/IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    </a>
+</head>
+<body>
+<div class="BasicTable">
+    <table style="width: 12%">
+        <tr>
+            <th><br>End reservation<br><br></th>
+        </tr>
+        <tr>
+            <td>
+
+<form action="/endReservation" method="post">
+    <br>
+    <label> Reservation ID</label>
+    <br>
+    <input readonly name="reservation_id" th:value="${EndedReservation.reservation_id}">
+    <br><br>
+    <label>Billing date</label>
+    <br>
+    <input readonly name="billing_date" th:value="${EndedReservation.billing_date}">
+    <br><br>
+    <label>Enter odometer count</label>
+    <br>
+    <input name="km_driven"type="number">
+    <br><br>
+    <label> Need for repairs?</label>
+    <br>
+    <input name="extra_repair"type="number">
+    <br><br>
+    <label> Fuel tank less than 50%?</label>
+    <br>
+    <select name="fuel_tank">
+        <option value="0" >No</option>
+        <option value="1">Yes</option>
+    </select>
+    <br><br>
+
+    <br>
+    <label>Delivery at Rental Office? </label>
+    <br>
+    <fieldset>
+        Yes<input type="radio" name="noyes" id="yes" value="yes" onclick="showDrop(this.value)" />
+        No<input type="radio" name= "noyes" id="no" value="no" onclick="showDrop(this.value)" />
+    </fieldset>
+    <br>
+        <div id="drop" style="display: none">
+            <label>Enter kilometers from rental</label>
+            <br>
+            <input type="number" name="droppoint" id="droppoint" value="0">
+            <br><br>
+        </div>
+    <br><br>
+    <button type="submit"> End reservation</button>
+</form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+<script>
+    function showDrop(val){
+    if(val === "no"){
+        document.getElementById("drop").style.display = "block";
+    }
+    if(val === "yes")
+    document.getElementById('drop').style.display ='none';
+    change = document.getElementById("droppoint");
+    change = 0;
+    }
+</script>
+</html>
