@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+<div class="BasicTable">
+    <table style="width: 80%;">
+        <tr>
+            <th><br>Rental Offices<br><br></th>
+        </tr>
+        <tr>
+            <td>
+                <div style="display: flex; flex-direction: row">
+                <table style="width: 45%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Address ID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="RentalOffices : ${rentalOffices}">
+                        <td th:text="${RentalOffices.rental_office_id}" />
+                        <td th:text="${RentalOffices.address_id}" />
+                    </tr>
+                    </tbody>
+                </table>
+                <table style="width: 45%">
+                    <thead>
+                    <tr>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Zip</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="Address : ${address}">
+                        <td th:text="${Address.address_1}" />
+                        <td th:text="${Address.phone}" />
+                        <td th:text="${Address.zip_code}" />
+                    </tr>
+                    </tbody>
+                </table>
+                <br><br>
+                </div>
+
+                <form action="/DeleteRentalOffice" method="post">
+
+                    <br><br>
+
+                    <label> Which of our Rental Offices do you wish to delete?
+                        <select name="delete-id">
+                            <option th:each="RentalOffices: ${rentalOffices}" th:value="${RentalOffices.rental_office_id}" th:text="${RentalOffices.rental_office_id}"/>
+                        </select>
+                    </label>
+                    <button type="submit">Delete</button>
+                    <br><br>
+
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

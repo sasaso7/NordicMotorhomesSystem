@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+
+<div class="BasicTable">
+    <table style="width: 12%">
+        <tr>
+            <th><br>Create Rental Office<br><br></th>
+        </tr>
+
+        <tr>
+            <td>
+                <form action="/CreateRentalOffice" th:object="${RentalOffices}" method="post">
+                    <br>
+
+                    <div id="address" th:object="${Address}">
+                        <label>Address</label>
+                        <br>
+                        <input type="text" name="address_1">
+                        <br><br>
+                        <label>Phone</label>
+                        <br>
+                        <input type="number" name="phone">
+                        <br><br>
+                        <label>Zip code</label>
+                        <br>
+                        <input type="number" name="zip_code">
+                        <br><br>
+                    </div>
+
+
+                    <input style="background-color: lightgrey" type="submit" value="Create Rental Office">
+                    <br><br>
+                </form>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

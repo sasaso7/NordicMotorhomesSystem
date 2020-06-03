@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+<div class="BasicTable">
+    <table style="width: 80%">
+        <tr>
+            <th><br></br>Employees<br><br></th>
+        </tr>
+        <tr>
+            <td>
+
+<table style="width: 99%">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Employee status</th>
+        <th>Proffesion</th>
+        <th>Address ID</th>
+        <th>Rental office ID</th>
+        <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employees}">
+        <td th:text="${employee.employee_id}" />
+        <td th:text="${employee.first_name}" />
+        <td th:text="${employee.last_name}" />
+        <td th:text="${employee.email}" />
+        <td th:text="${employee.employee_status}" />
+        <td th:text="${employee.profession}" />
+        <td th:text="${employee.address_id}" />
+        <td th:text="${employee.rental_office_id}" />
+        <td th:text="${employee.password_emp}" />
+    </tr>
+    </tbody>
+</table>
+<br>
+
+<form action="/UpdateEmployee2" method="get">
+    <label> Which of our employees do you want to update?
+        <select name="update-id">
+            <option th:each="employee: ${employees}" th:value="${employee.employee_id}" th:text="${employee.employee_id}"/>
+        </select>
+    </label>
+    <button type="submit">Update</button>
+    <br><br>
+</form>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

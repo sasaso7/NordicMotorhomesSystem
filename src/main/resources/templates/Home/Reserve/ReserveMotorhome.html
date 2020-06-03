@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:style="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <a href="/" > <!--Redirect til frontpage når man trykker på Logoet -->
+        <img src="IMG/Logoo.PNG" alt="Logo not shown" class="logo">
+        <title></title>
+
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </a>
+</head>
+<body>
+
+<div class="BasicTable">
+    <div>
+<table style="width: 20%">
+    <tr>
+    <th><br>Create reservation<br><br></th>
+    </tr>
+
+    <tr>
+        <td>
+<form action="/ReserveMotorhome" th:object="${Reservation}" method="post">
+    <br>
+    <label>Start date</label>
+    <br>
+    <input type="Date" name="start_date">
+    <br><br>
+    <label>End date</label>
+    <br>
+    <input type="Date" name="end_date">
+    <br><br>
+    <label>Choose motorhome</label>
+    <br>
+    <select name="motorhome-id">
+        <option th:each="motorhome: ${motorhomes}" th:value="${motorhome.motorHome_id}" th:text="${motorhome.motorHome_id}"/>
+    </select>
+    <br><br>
+    <label>Choose rental office ID</label>
+    <br>
+    <select name="rentalOffice-id">
+        <option th:each="rentalOffice: ${rentalOffices}" th:value="${rentalOffice.rental_office_id}" th:text="${rentalOffice.rental_office_id}"/>
+    </select>
+
+    <br><br>
+
+    <label>Choose customer</label>
+    <label>
+        <br>
+        <select name="customer-id">
+            <option th:each="customer: ${customers}" th:value="${customer.customer_id}" th:text="${customer.first_name}+ ${customer.last_name}"/>
+        </select>
+    </label>
+
+
+    <br><br>
+
+    <label>SELECT EXTRAS:</label>
+    <div id="Extra" th:object="${Extra}">
+        <table>
+            <thead>
+            <tr>
+                <th>Picnic Tables</th>
+                <th>Beds</th>
+                <th>Chairs</th>
+                <th>Bike Racks</th>
+                <th>Child Seats</th>
+            </tr>
+            </thead>
+            <br>
+            <tbody>
+            <tr>
+                <td><select name="picnic_tables">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+                </td>
+                <td><select name="beds">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+                </td>
+                <td><select name="chairs">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                </td>
+                <td><select name="bike_racks">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                </td>
+                <td><select name="child_seats">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+
+    <label>Pickup at Rental Office? </label>
+    <br>
+    <fieldset>
+        Yes<input type="radio" name="noyes" id="yes" value="yes" onclick="showDrop(this.value)" />
+        No<input type="radio" name= "noyes" id="no" value="no" onclick="showDrop(this.value)" />
+    </fieldset>
+    <br>
+    <div id="drop" style="display: none">
+        <label>Enter kilometers from rental</label>
+        <br>
+        <input type="number" name="droppoint" id="droppoint" value="0">
+        <br><br>
+    </div>
+    <br><br><input type="submit" value="Create reservation">
+    <br><br>
+
+</form>
+        </td>
+    </tr>
+</table>
+    </div>
+
+    <div class="BasicTable">
+        <table>
+            <thead>
+            <tr>
+                <th>Motorhomes</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Odometer</th>
+                <th>Seats</th>
+                <th>Beds</th>
+                <th>Fuel</th>
+                <th>Price per day</th>
+                <th>Size ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="motorhome: ${motorhomes}">
+                <td th:text="${motorhome.motorHome_id}" />
+                <td th:text="${motorhome.brand}" />
+                <td th:text="${motorhome.model}" />
+                <td th:text="${motorhome.odometer}" />
+                <td th:text="${motorhome.seats}" />
+                <td th:text="${motorhome.beds}" />
+                <td th:text="${motorhome.fuel}" />
+                <td th:text="${motorhome.price_per_day}" />
+                <td th:text="${motorhome.size_id}" />
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<br><br>
+
+</body>
+<script>
+    function showDrop(val){
+        if(val === "no"){
+            document.getElementById("drop").style.display = "block";
+        }
+        if(val === "yes")
+            document.getElementById('drop').style.display ='none';
+        change = document.getElementById("droppoint");
+        change = 0;
+    }
+</script>
+</html>
